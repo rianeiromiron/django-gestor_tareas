@@ -1,30 +1,30 @@
 # gestor_tareas
 
-App de Django que implementa un gestor de tareas simple, dentro del proyecto `django_mastery`.
+Django app that implements a simple task manager, part of the `django_mastery` project.
 
-## Contenido de la app
+## App contents
 
-- **Modelo** (`models.py`): `Tarea` con los campos `titulo` (CharField), `descripcion` (TextField, opcional), `completado` (BooleanField, por defecto `False`) y `fecha_creacion` (DateTimeField, asignada automáticamente al crear).
-- **Formulario** (`forms.py`): `TareaForm`, un `ModelForm` sobre `Tarea` con los campos `titulo` y `descripcion`.
-- **Vistas** (`views.py`): `lista_tareas` — en `POST` valida y guarda una nueva tarea (redirige tras guardar); en `GET` lista todas las tareas ordenadas por fecha de creación descendente y renderiza la plantilla.
-- **Plantillas** (`templates/gestor_tareas/`):
-  - `lista.html` — extiende `blog_estatico/base.html`; muestra el formulario de alta y el listado de tareas con su estado (completada/pendiente).
-- **Rutas** (`urls.py`):
+- **Model** (`models.py`): `Tarea` with the fields `titulo` (CharField), `descripcion` (TextField, optional), `completado` (BooleanField, defaults to `False`) and `fecha_creacion` (DateTimeField, set automatically on creation).
+- **Form** (`forms.py`): `TareaForm`, a `ModelForm` based on `Tarea` with the `titulo` and `descripcion` fields.
+- **Views** (`views.py`): `lista_tareas` — on `POST` it validates and saves a new task (redirects after saving); on `GET` it lists all tasks ordered by creation date (newest first) and renders the template.
+- **Templates** (`templates/gestor_tareas/`):
+  - `lista.html` — extends `blog_estatico/base.html`; shows the task creation form and the list of tasks with their status (completed/pending).
+- **Routes** (`urls.py`):
 
-  | Ruta | Vista | Descripción |
-  |------|-------|-------------|
-  | `''` | `lista_tareas` | Listado de tareas y alta de nuevas tareas |
+  | Route | View | Description |
+  |-------|------|-------------|
+  | `''` | `lista_tareas` | Task list and creation of new tasks |
 
-- **Admin** (`admin.py`): `Tarea` registrado con `list_display` mostrando `titulo`, `completado` y `fecha_creacion`.
+- **Admin** (`admin.py`): `Tarea` registered with `list_display` showing `titulo`, `completado` and `fecha_creacion`.
 
-## Uso
+## Usage
 
-Esta app forma parte del proyecto Django `django_mastery` y no se ejecuta de forma independiente.
-Debe estar registrada en `INSTALLED_APPS` y sus rutas incluidas en el `urls.py` raíz del proyecto
-(ya configurado bajo el prefijo `tareas/`). Para levantar el servidor, ejecuta desde la raíz del repositorio:
+This app is part of the `django_mastery` Django project and does not run standalone.
+It must be registered in `INSTALLED_APPS` and its routes included in the project's root `urls.py`
+(already configured under the `tareas/` prefix). To start the server, run from the repository root:
 
 ```bash
 python manage.py runserver
 ```
 
-Luego visita `http://127.0.0.1:8000/tareas/`.
+Then visit `http://127.0.0.1:8000/tareas/`.
