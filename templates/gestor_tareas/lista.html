@@ -1,0 +1,31 @@
+{% extends "blog_estatico/base.html" %}
+
+{% block title %}Gestor de Tareas{% endblock %}
+
+{% block content %}
+    <h2>Nueva tarea</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar tarea</button>
+    </form>
+
+    <h2>Tareas</h2>
+    <ul>
+        {% for tarea in tareas %}
+        <li>
+            <strong>{{ tarea.titulo }}</strong>
+            {% if tarea.completado %}
+                ✅ Completada
+            {% else %}
+                ⏳ Pendiente
+            {% endif %}
+            {% if tarea.descripcion %}
+                <p>{{ tarea.descripcion }}</p>
+            {% endif %}
+        </li>
+        {% empty %}
+        <li>No hay tareas todavía.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
